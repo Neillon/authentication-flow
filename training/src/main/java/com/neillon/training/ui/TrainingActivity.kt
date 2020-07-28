@@ -1,11 +1,12 @@
-package com.neillon.auth
+package com.neillon.training.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.neillon.training.R
 
-class AuthActivity : AppCompatActivity() {
+class TrainingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        setContentView(R.layout.activity_training)
     }
 }

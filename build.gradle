@@ -7,6 +7,8 @@ buildscript {
         room_version = "2.2.5"
         retrofit_version = "2.9.0"
         gson_version = "2.5.0"
+        playcore_version = "1.7.2"
+        material_version = "1.1.0"
     }
     repositories {
         google()
@@ -15,6 +17,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

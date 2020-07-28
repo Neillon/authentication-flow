@@ -8,7 +8,7 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import org.koin.dsl.koinApplication
 
-infix fun Context.startFeature(feature: Feature) {
+infix fun Context.goToFeature(feature: Feature) {
     val splitInstallManager = SplitInstallManagerFactory.create(this)
     val request = SplitInstallRequest.newBuilder()
         .addModule(feature.name)
@@ -20,7 +20,7 @@ infix fun Context.startFeature(feature: Feature) {
     splitInstallManager.startInstall(request)
     if (splitInstallManager.installedModules.contains(feature.name)) {
         val intent = Intent().apply {
-            setClassName(this@startFeature, feature.entryPointClassName)
+            setClassName(this@goToFeature, feature.entryPointClassName)
         }
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
 

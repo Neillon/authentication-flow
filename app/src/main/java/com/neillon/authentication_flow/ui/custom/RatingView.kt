@@ -1,4 +1,4 @@
-package com.neillon.authentication_flow.custom
+package com.neillon.authentication_flow.ui.custom
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -32,7 +32,7 @@ class RatingView(context: Context, attributeSet: AttributeSet) : View(context, a
 
     private val progressPaint = Paint().apply {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            color = context.getColor(R.color.colorPrimaryDark)
+            color = context.getColor(R.color.colorPrimaryVariant)
         }
         flags = Paint.ANTI_ALIAS_FLAG
     }

@@ -28,15 +28,14 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    // Features to route
-    implementation project(":auth")
-    implementation project(":training")
-
     implementation 'androidx.core:core-ktx:1.3.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     // Koin
     implementation "org.koin:koin-android:$koin_version"
+
+    // Play core
+    implementation "com.google.android.play:core:$playcore_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

@@ -1,7 +1,7 @@
 package com.neillon.network.services
 
 import com.neillon.domain.entities.User
-import com.neillon.network.base.Response
+import com.neillon.network.response.Response
 import com.neillon.network.schemas.UserSchema
 import retrofit2.http.POST
 

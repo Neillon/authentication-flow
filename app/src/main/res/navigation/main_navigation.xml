@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/authActivity"
+    tools:ignore="UnusedNavigation">
+
+    <activity
+        android:id="@+id/authActivity"
+        android:name="com.neillon.auth.ui.AuthActivity"
+        app:moduleName="auth"
+        android:label="Authentication"
+        tools:layout="@layout/activity_auth" />
+    <activity
+        android:id="@+id/trainingActivity"
+        android:name="com.neillon.training.ui.TrainingActivity"
+        app:moduleName="training"
+        android:label="Training"
+        tools:layout="@layout/activity_training" />
+</navigation>

@@ -14,7 +14,7 @@
     </dist:module>
 
     <application>
-        <activity android:name=".TrainingActivity"></activity>
+        <activity android:name=".ui.TrainingActivity"></activity>
     </application>
 
 </manifest>
