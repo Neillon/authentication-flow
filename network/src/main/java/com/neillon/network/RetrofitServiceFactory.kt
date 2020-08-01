@@ -1,7 +1,7 @@
 package com.neillon.network
 
-import android.content.Context
 import com.neillon.network.interceptors.CommonInterceptors
+import com.neillon.network.utils.TokenUtils
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,9 +10,9 @@ object RetrofitServiceFactory {
 
     private val baseClient: OkHttpClient = OkHttpClient()
 
-    fun <T> Context.makeAuthenticatedService(service: Class<T>): T {
+    fun <T> makeAuthenticatedService(tokenUtils: TokenUtils, service: Class<T>): T {
         val builder = baseClient.newBuilder()
-        builder.addInterceptor(CommonInterceptors.Auth(this))
+        builder.addInterceptor(CommonInterceptors.Auth(tokenUtils = tokenUtils))
 
         val retrofit = Retrofit.Builder()
             .client(builder.build())

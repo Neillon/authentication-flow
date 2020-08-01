@@ -3,11 +3,11 @@ package com.neillon.network.utils
 import android.content.Context
 import com.neillon.network.R
 
-object TokenUtils {
+class TokenUtils(var context: Context?) {
 
-    fun getToken(context: Context?): String {
-        return context?.let { thisContext ->
-            thisContext.apply {
+    fun getToken(): String {
+        return context?.let {
+            it.apply {
                 val sharedPrefs =
                     getSharedPreferences(getString(R.string.authentication), Context.MODE_PRIVATE)
 

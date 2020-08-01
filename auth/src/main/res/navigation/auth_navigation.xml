@@ -12,11 +12,22 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_trainingActivity"
+            app:destination="@id/loginTrainingActivity" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.neillon.auth.ui.features.register.RegisterFragment"
         android:label="Register"
         tools:layout="@layout/fragment_register" />
+    <activity
+        android:id="@+id/loginTrainingActivity"
+        android:name="com.neillon.training.ui.TrainingActivity"
+        android:label="Training" />
 </navigation>

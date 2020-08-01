@@ -29,7 +29,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_email"
+        app:startIconTint="?attr/colorPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/mAuthLoginEmailEditText"
@@ -50,7 +52,9 @@
         app:endIconTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="@+id/textField"
         app:layout_constraintStart_toStartOf="@+id/textField"
-        app:layout_constraintTop_toBottomOf="@+id/textField">
+        app:layout_constraintTop_toBottomOf="@+id/textField"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="?attr/colorPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/mAuthLoginPasswordEditText"
@@ -61,22 +65,34 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/mAuthLoginForgotPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/forgot_password"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textField1"
+        app:layout_constraintTop_toBottomOf="@+id/textField1" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mAuthLoginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_marginTop="24dp"
         android:shadowColor="@color/colorPrimary"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="@+id/textField1"
         app:layout_constraintStart_toStartOf="@+id/textField1"
-        app:layout_constraintTop_toBottomOf="@+id/textField1" />
+        app:layout_constraintTop_toBottomOf="@+id/mAuthLoginForgotPasswordTextView" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mAuthLoginButton">
@@ -91,7 +107,7 @@
         <TextView
             android:id="@+id/mAuthLoginSignUpTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:text="@string/sign_up"
             android:textColor="@color/colorPrimary"
@@ -103,25 +119,23 @@
         android:id="@+id/imageView"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="48dp"
         android:alpha="0.5"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_emoji_food_beverage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/welcome_back"
-        android:textStyle="bold"
         android:textColor="@android:color/black"
-        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
