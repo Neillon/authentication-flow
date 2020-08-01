@@ -16,7 +16,6 @@
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/network" />
             <option value="$PROJECT_DIR$/persistence" />
-            <option value="$PROJECT_DIR$/router" />
             <option value="$PROJECT_DIR$/training" />
           </set>
         </option>

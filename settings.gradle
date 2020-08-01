@@ -3,6 +3,5 @@ include ':persistence'
 include ':domain'
 include ':training'
 include ':auth'
-include ':router'
 include ':app'
 rootProject.name = "authentication-flow"
