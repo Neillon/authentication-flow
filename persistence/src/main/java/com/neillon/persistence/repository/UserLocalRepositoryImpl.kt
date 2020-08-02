@@ -13,11 +13,11 @@ class UserLocalRepositoryImpl(
     override suspend fun insert(value: User): Long =
         database.userDao().insert(value.toEntity())
 
-    override suspend fun getById(id: Long): User {
+    override suspend fun getById(id: Long): User? {
         throw NotImplementedError("Method getById wasn't implemented yet")
     }
 
-    override suspend fun getFirst(): User =
+    override suspend fun getFirst(): User? =
         database.userDao().getUser().toDomain()
 
 }

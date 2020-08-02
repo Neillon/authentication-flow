@@ -1,5 +1,5 @@
 package com.neillon.domain.contracts
 
-interface UseCase<in T, out S> {
-    suspend fun execute(data: T): S
+interface UseCase <T, Params> {
+    suspend fun execute(params: Params): T
 }

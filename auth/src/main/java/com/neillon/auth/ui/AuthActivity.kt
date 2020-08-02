@@ -6,12 +6,12 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.neillon.auth.R
+import com.neillon.auth.base.BaseAuthActivity
 import com.neillon.auth.databinding.ActivityAuthBinding
 import kotlinx.android.synthetic.main.activity_auth.*
 
-class AuthActivity : AppCompatActivity() {
+class AuthActivity : BaseAuthActivity() {
 
-    lateinit var navController: NavController
     private lateinit var binding: ActivityAuthBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
-        navController = mAuthNavhostFragment!!.findNavController()
+        // navController = mAuthNavhostFragment!!.findNavController()
     }
 
     override fun onSupportNavigateUp(): Boolean =

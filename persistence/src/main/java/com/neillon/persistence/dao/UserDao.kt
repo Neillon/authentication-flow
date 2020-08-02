@@ -9,9 +9,9 @@ import com.neillon.persistence.entity.UserEntity
 interface UserDao {
 
     @Insert
-    suspend fun insert(user: Any): Long
+    suspend fun insert(user: UserEntity): Long
 
     @Query(value = "SELECT * FROM user LIMIT 1")
-    suspend fun getUser(): UserEntity
+    suspend fun getUser(): UserEntity?
 
 }

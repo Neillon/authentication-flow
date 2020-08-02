@@ -6,11 +6,16 @@ import com.neillon.persistence.entity.UserEntity
 fun User.toEntity(): UserEntity = UserEntity(
     id = null,
     name = this.name,
-    email = this.email
+    email = this.email,
+    password = this.password
 )
 
-fun UserEntity.toDomain(): User = User(
-    name = this.name,
-    email = this.email,
-    password = null
-)
+fun UserEntity?.toDomain(): User? {
+    return this?.let {
+        User(
+            name = this.name,
+            email = this.email,
+            password = this.password
+        )
+    } ?: null
+}

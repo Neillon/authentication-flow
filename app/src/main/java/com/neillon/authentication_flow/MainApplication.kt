@@ -11,7 +11,7 @@ class MainApplication : Application() {
 
         startKoin {
             androidContext(this@MainApplication)
-            modules(listOf())
+            modules(emptyList())
         }
 
     }
