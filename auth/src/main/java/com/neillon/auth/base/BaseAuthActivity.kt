@@ -7,7 +7,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import com.neillon.auth.R
 import com.neillon.auth.di.AuthModule
+import com.neillon.auth.ui.features.login.LoginFragmentDirections
 import com.neillon.auth.utils.AuthenticationState
 import com.neillon.di.UseCaseModule
 import com.neillon.network.di.NetworkModule
@@ -49,23 +51,23 @@ open class BaseAuthActivity : AppCompatActivity() {
             when (it) {
                 is AuthenticationState.Logged -> {
                     Log.i(TAG, "Logged")
-//                    val action = LoginFragmentDirections.actionLoginFragmentToTrainingActivity()
-//                    navController.navigate(action)
+                    val action = LoginFragmentDirections.actionLoginFragmentToTrainingActivity()
+                    navController.navigate(action)
                 }
                 is AuthenticationState.Error -> {
                     Log.i(TAG, "Error ${it.errorMessage}")
-//                    navController.navigate(R.id.loginFragment)
-//                    navController.popBackStack()
+                    navController.navigate(R.id.loginFragment)
+                    navController.popBackStack()
                 }
                 AuthenticationState.UnLogged -> {
                     Log.i(TAG, "Unlogged")
-//                    navController.navigate(R.id.loginFragment)
-//                    navController.popBackStack()
+                    navController.navigate(R.id.loginFragment)
+                    navController.popBackStack()
                 }
                 AuthenticationState.Unauthorized -> {
                     Log.i(TAG, "Unauthorized")
-//                    navController.navigate(R.id.loginFragment)
-//                    navController.popBackStack()
+                    navController.navigate(R.id.loginFragment)
+                    navController.popBackStack()
                     Toast.makeText(this, "Unauthorized", Toast.LENGTH_SHORT).show()
                 }
             }.exhaustive

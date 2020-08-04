@@ -23,7 +23,7 @@ class AuthActivity : BaseAuthActivity() {
     }
 
     private fun setupNavigation() {
-        // navController = mAuthNavhostFragment!!.findNavController()
+        navController = mAuthNavhostFragment!!.findNavController()
     }
 
     override fun onSupportNavigateUp(): Boolean =
