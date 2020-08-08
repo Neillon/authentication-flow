@@ -1,10 +1,11 @@
-package com.neillon.auth.utils
+package com.neillon.training.utils
+
+import com.neillon.domain.entities.User
 
 sealed class AuthenticationState {
-    class Logged(var user: LoggedUser): AuthenticationState()
+    class Logged(var user: User?): AuthenticationState()
     class Error(var errorMessage: String): AuthenticationState()
     object UnLogged : AuthenticationState()
     object Unauthorized: AuthenticationState()
+    object LoadingUser: AuthenticationState()
 }
-
-data class LoggedUser(var email: String, var name: String, var password: String)

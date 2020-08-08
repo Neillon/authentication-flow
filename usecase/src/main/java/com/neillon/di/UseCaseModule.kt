@@ -14,6 +14,5 @@ object UseCaseModule {
         factory {
             GetSingleUserUseCase(repository = get())
         }
-
     }
 }

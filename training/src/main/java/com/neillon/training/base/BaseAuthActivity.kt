@@ -1,19 +1,17 @@
-package com.neillon.auth.base
+package com.neillon.training.base
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import com.neillon.auth.R
-import com.neillon.auth.di.AuthModule
-import com.neillon.auth.ui.features.login.LoginFragmentDirections
-import com.neillon.auth.utils.AuthenticationState
 import com.neillon.di.UseCaseModule
 import com.neillon.network.di.NetworkModule
 import com.neillon.persistence.di.PersistenceModule
+import com.neillon.training.R
+import com.neillon.training.di.TrainingModule
+import com.neillon.training.utils.AuthenticationState
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -23,7 +21,7 @@ import org.koin.dsl.koinApplication
 
 open class BaseAuthActivity : AppCompatActivity() {
 
-    val baseAuthViewModel: BaseAuthViewModel  by viewModel()
+    private val baseAuthViewModel: BaseAuthViewModel by viewModel()
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,12 +32,6 @@ open class BaseAuthActivity : AppCompatActivity() {
     }
 
     private fun provideDependencies() {
-        val modules = listOf(
-            AuthModule.dependencies,
-            UseCaseModule.dependencies,
-            PersistenceModule.dependencies,
-            NetworkModule.dependencies
-        )
         startKoin {
             androidContext(applicationContext)
             loadKoinModules(modules)
@@ -51,38 +43,44 @@ open class BaseAuthActivity : AppCompatActivity() {
             when (it) {
                 is AuthenticationState.Logged -> {
                     Log.i(TAG, "Logged")
-                    val action = LoginFragmentDirections.actionLoginFragmentToTrainingActivity()
-                    navController.navigate(action)
                 }
                 is AuthenticationState.Error -> {
                     Log.i(TAG, "Error ${it.errorMessage}")
-                    navController.navigate(R.id.loginFragment)
-                    navController.popBackStack()
+                    // TODO: Show dialog fragment
                 }
                 AuthenticationState.UnLogged -> {
-                    Log.i(TAG, "Unlogged")
-                    navController.navigate(R.id.loginFragment)
-                    navController.popBackStack()
+                    Log.i(TAG, "UnLogged")
+//                    navController.navigate(R.id.authActivity)
+//                    finish()
                 }
                 AuthenticationState.Unauthorized -> {
                     Log.i(TAG, "Unauthorized")
-                    navController.navigate(R.id.loginFragment)
-                    navController.popBackStack()
                     Toast.makeText(this, "Unauthorized", Toast.LENGTH_SHORT).show()
+                    // TODO: Show dialog fragment to redirect
+//                    navController.navigate(R.id.authActivity)
+//                    finish()
                 }
-            }.exhaustive
+            }
         })
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        koinApplication {
-            unloadKoinModules(AuthModule.dependencies)
+        startKoin {
+            androidContext(applicationContext)
+            unloadKoinModules(modules)
         }
     }
 
     companion object {
         const val TAG = "Authentication"
+
+        val modules = listOf(
+            TrainingModule.dependencies,
+            UseCaseModule.dependencies,
+            PersistenceModule.dependencies,
+            NetworkModule.dependencies
+        )
     }
 }
 

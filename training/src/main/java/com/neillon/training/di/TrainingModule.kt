@@ -1,7 +1,14 @@
 package com.neillon.training.di
 
-import org.koin.core.module.Module
+import com.neillon.di.UseCaseModule
+import com.neillon.training.base.BaseAuthViewModel
+import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
 object TrainingModule {
-    val modules = listOf<Module>()
+    val dependencies = module {
+        viewModel {
+            BaseAuthViewModel(getSingleUserUseCase = get())
+        }
+    }
 }
