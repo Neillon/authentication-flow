@@ -7,8 +7,6 @@ import org.koin.dsl.module
 
 object TrainingModule {
     val dependencies = module {
-        viewModel {
-            BaseAuthViewModel(getSingleUserUseCase = get())
-        }
+
     }
 }

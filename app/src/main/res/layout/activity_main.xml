@@ -6,27 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/mMainNavHostFragment"
         android:name="androidx.navigation.dynamicfeatures.fragment.DynamicNavHostFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/main_navigation" />
 
+    <ProgressBar
+        android:id="@+id/progressLoadingUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewState"
+        app:layout_constraintEnd_toEndOf="@+id/textViewState"
+        app:layout_constraintStart_toStartOf="@+id/textViewState" />
     <TextView
         android:id="@+id/textViewState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loading_user"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

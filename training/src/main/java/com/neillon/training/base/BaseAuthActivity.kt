@@ -2,18 +2,17 @@ package com.neillon.training.base
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import com.neillon.di.UseCaseModule
+import com.neillon.domain.entities.User
 import com.neillon.network.di.NetworkModule
 import com.neillon.persistence.di.PersistenceModule
-import com.neillon.training.R
 import com.neillon.training.di.TrainingModule
 import com.neillon.training.utils.AuthenticationState
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.context.unloadKoinModules
@@ -21,46 +20,56 @@ import org.koin.dsl.koinApplication
 
 open class BaseAuthActivity : AppCompatActivity() {
 
-    private val baseAuthViewModel: BaseAuthViewModel by viewModel()
+    private val viewModel: BaseAuthViewModel by viewModels()
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        loadLoggedUser()
+
         provideDependencies()
         observeViewModel()
     }
 
+    private fun loadLoggedUser() {
+        val user = intent.getSerializableExtra("user") as User
+        viewModel.setLoggedUser(user)
+    }
+
     private fun provideDependencies() {
-        startKoin {
-            androidContext(applicationContext)
+        koinApplication {
             loadKoinModules(modules)
         }
     }
 
     private fun observeViewModel() {
-        baseAuthViewModel.authenticationState.observe(this, Observer {
+        viewModel.authenticationState.observe(this, Observer {
             when (it) {
                 is AuthenticationState.Logged -> {
-                    Log.i(TAG, "Logged")
+                    Log.i(TAG, "observeViewModel: Logged with ${it.user}")
                 }
                 is AuthenticationState.Error -> {
-                    Log.i(TAG, "Error ${it.errorMessage}")
+                    Log.i(TAG, "observeViewModel: Error ${it.errorMessage}")
                     // TODO: Show dialog fragment
                 }
                 AuthenticationState.UnLogged -> {
-                    Log.i(TAG, "UnLogged")
-//                    navController.navigate(R.id.authActivity)
-//                    finish()
+                    Log.i(TAG, "observeViewModel: UnLogged")
+                    // TODO: Move to Auth feature
                 }
                 AuthenticationState.Unauthorized -> {
-                    Log.i(TAG, "Unauthorized")
-                    Toast.makeText(this, "Unauthorized", Toast.LENGTH_SHORT).show()
-                    // TODO: Show dialog fragment to redirect
-//                    navController.navigate(R.id.authActivity)
-//                    finish()
+                    Log.i(TAG, "observeViewModel: Unauthorized")
+                    // TODO: Show dialog fragment to move to auth feature
                 }
-            }
+                AuthenticationState.LoadingUser -> {
+                    Log.i(TAG, "observeViewModel: Loading User")
+                    // TODO: Show loading dialog fragment
+                }
+            }.exhaustive
+        })
+
+        viewModel.loggedUser.observe(this, Observer {
+            Log.i(TAG, "observeViewModel: Logged with $it")
         })
     }
 

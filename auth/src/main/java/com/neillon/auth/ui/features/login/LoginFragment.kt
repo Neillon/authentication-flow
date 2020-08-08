@@ -30,12 +30,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 is LoginState.Logged -> {
                     val action = LoginFragmentDirections.actionLoginFragmentToTrainingActivity()
                     navController.navigate(action)
-                    requireActivity().finish()
+                    activity?.finish()
                 }
                 is LoginState.Error -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 }
-            }.exhaustive
+            }
         })
     }
 

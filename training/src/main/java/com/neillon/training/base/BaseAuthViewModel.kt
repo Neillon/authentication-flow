@@ -3,32 +3,19 @@ package com.neillon.training.base
 import androidx.lifecycle.*
 import com.neillon.domain.entities.User
 import com.neillon.training.utils.AuthenticationState
-import com.neillon.usecase.user.GetSingleUserUseCase
-import com.neillon.usecase.user.SaveUserUseCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class BaseAuthViewModel(
-    private val getSingleUserUseCase: GetSingleUserUseCase
-) : ViewModel() {
+class BaseAuthViewModel : ViewModel() {
 
-    private val _authenticationState: MutableLiveData<AuthenticationState> = liveData {
-        emit(AuthenticationState.LoadingUser)
-        val user = getLoggedUser()
-        if (user == null)
-            emit(AuthenticationState.UnLogged)
-        else
-            emit(AuthenticationState.Logged(user))
+    private val _authenticationState = liveData<AuthenticationState> {
+        AuthenticationState.LoadingUser
     } as MutableLiveData<AuthenticationState>
     val authenticationState: LiveData<AuthenticationState> = _authenticationState
+    val loggedUser = Transformations.map(authenticationState) {
+        (authenticationState.value as AuthenticationState.Logged).user
+    }
 
-    private suspend fun getLoggedUser(): User? {
-        val userJob = viewModelScope.async(Dispatchers.IO) {
-            getSingleUserUseCase.execute(GetSingleUserUseCase.NoParams())
-        }
-        return userJob.await()
+    fun setLoggedUser(user: User) {
+        _authenticationState.value = AuthenticationState.Logged(user)
     }
 
 }

@@ -15,7 +15,9 @@
     <activity
         android:id="@+id/trainingActivity"
         android:name="com.neillon.training.ui.TrainingActivity"
-        app:moduleName="training"
         android:label="Training"
+        app:data="user"
+        app:dataPattern="User"
+        app:moduleName="training"
         tools:layout="@layout/activity_training" />
 </navigation>
